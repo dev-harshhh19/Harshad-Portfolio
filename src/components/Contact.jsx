@@ -83,7 +83,6 @@ const Contact = () => {
               <form
                 action="https://formspree.io/f/mvgqpkzp"
                 method="POST"
-                onSubmit={() => setSubmitted(true)}
                 className="space-y-6"
               >
                 <input type="hidden" name="_replyto" />
