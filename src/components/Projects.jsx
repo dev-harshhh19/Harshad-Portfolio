@@ -16,7 +16,7 @@ const projects = [
     tech: ['HTML', 'CSS', 'JavaScript'],
     icon: Database,
     github: 'https://github.com/dev-harshhh19/FuelSim-Gas-Station-Pump-Simulator/',
-    live: 'https://dev-harshhh18.github.io/FuelSim-Gas-Station-Pump-Simulator/',
+    live: 'https://dev-harshhh19.github.io/FuelSim-Gas-Station-Pump-Simulator/',
     year: '2025',
   },
   {
