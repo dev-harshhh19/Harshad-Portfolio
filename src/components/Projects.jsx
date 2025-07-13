@@ -57,7 +57,7 @@ const Projects = () => {
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -16 }}
-              transition={{ duration: 0.8 }}
+              // transition={{ duration: 0.8 }}
               className="glass-effect rounded-xl p-6 flex flex-col justify-between card-hover"
             >
               <div>
