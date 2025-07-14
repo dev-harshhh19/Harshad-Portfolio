@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write # Grants read/write permission to contents (code, branches, etc.)
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
