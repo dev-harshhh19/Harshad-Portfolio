@@ -5,17 +5,17 @@ import { BookOpen, FileText, X } from 'lucide-react'
 const certificates = [
   {
     title: 'Full Stack Java Development',
-    file: `${import.meta.env.BASE_URL}public/certificates/FS-java-development-certificate.jpg`,
+    href={`${import.meta.env.BASE_URL}certificates/FS-java-development-certificate.jpg`,
     description: 'Learned end-to-end web application development using Java, Spring Boot, and modern frontend frameworks. Managed real-world projects, collaborated in teams, and implemented RESTful APIs, authentication, and deployment best practices.'
   },
   {
     title: 'EA Certification',
-    file: `${import.meta.env.BASE_URL}public/certificates/EA_Certification.jpg`,
+    href={`${import.meta.env.BASE_URL}certificates/EA_Certification.jpg`,
     description: 'Gained expertise in enterprise architecture principles, system integration, and IT strategy. Managed architectural documentation and participated in case studies to solve real business problems.'
   },
   {
     title: 'AWS Solution Architecture',
-    file: `${import.meta.env.BASE_URL}public/certificates/AWS Solution Architecture.jpg`,
+    href={`${import.meta.env.BASE_URL}certificates/AWS Solution Architecture.jpg`,
     description: 'Mastered AWS cloud services, solution design, and cost optimization. Managed cloud deployments, security, and scalability for distributed applications.'
   },
 ]
