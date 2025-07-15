@@ -124,7 +124,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href={`${import.meta.env.BASE_URL}Resume/HarshadNikamResume.pdf`}
-              download
+              download="HarshadNikamResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 glass-effect text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 flex items-center justify-center space-x-2"
