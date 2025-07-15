@@ -123,7 +123,7 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="public\Resume\HarshadNikamResume.pdf"
+              file: `${import.meta.env.BASE_URL}public\Resume\HarshadNikamResume.pdf"
               download
               target="_blank"
               rel="noopener noreferrer"
