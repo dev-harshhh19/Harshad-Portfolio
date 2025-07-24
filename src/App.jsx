@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Lenis from 'lenis'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Projects from './components/Projects'
@@ -19,6 +20,24 @@ function App() {
     }, 1000)
 
     return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      smooth: true,
+      // You can add other Lenis options here if needed
+    })
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      // Cleanup if needed
+    }
   }, [])
 
   if (isLoading) {
@@ -59,4 +78,4 @@ function App() {
   )
 }
 
-export default App 
+export default App
