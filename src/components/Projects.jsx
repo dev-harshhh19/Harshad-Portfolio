@@ -3,12 +3,12 @@ import { Code, Zap, Database } from 'lucide-react'
 
 const projects = [
   {
-    title: 'Real-time Buzzer System',
-    description: 'Developed using React, Node.js, and MongoDB for real-time quiz participation. Enabled multi-user buzz-in functionality with synchronized UI and backend logic, created especially to simplify quiz administration for college tech events.',
-    tech: ['React', 'Node.js', 'MongoDB'],
-    icon: Zap,
-    github: 'https://github.com/dev-harshhh19/Report-card-Dashboard',
-    year: '2024',
+    title: 'Registration System',
+    description: 'A full-stack web application built with React, Node.js, and MongoDB for managing seminar and workshop registrations. It features a responsive public registration form with real-time validation and automated email confirmations, along with a secure admin dashboard for managing attendees, visualizing statistics, and configuring event details. Security best practices are integrated throughout, including JWT-based authentication, and server-side validation. Designed for scalability, reliability, and a seamless user experience across devices.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'EmailJS'],
+    icon: NotepadText,
+    live: 'https://registration-form-event.vercel.app/',
+    year: '2025',
   },
   {
     title: 'Fuel Station Simulator',
