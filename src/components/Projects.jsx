@@ -6,7 +6,7 @@ const projects = [
     title: 'Registration System',
     description: 'A full-stack web application built with React, Node.js, and MongoDB for managing seminar and workshop registrations. It features a responsive public registration form with real-time validation and automated email confirmations, along with a secure admin dashboard for managing attendees, visualizing statistics, and configuring event details. Security best practices are integrated throughout, including JWT-based authentication, and server-side validation. Designed for scalability, reliability, and a seamless user experience across devices.',
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'EmailJS'],
-    icon: NotepadText,
+    icon: Code,
     live: 'https://registration-form-event.vercel.app/',
     year: '2025',
   },
