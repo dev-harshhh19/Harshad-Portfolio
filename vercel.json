@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "package.json",
@@ -6,6 +7,39 @@
       "config": {
         "distDir": "dist"
       }
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/assets/(.*)",
+      "destination": "/assets/$1"
+    },
+    {
+      "source": "/((?!api/|assets/|favicon.ico|sw.js).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://vercel.live; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://via.placeholder.com; font-src 'self'; frame-src 'self' https://vercel.live; connect-src 'self' https://vercel.live wss://ws-us3.pusher.com;"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
     }
   ]
 }

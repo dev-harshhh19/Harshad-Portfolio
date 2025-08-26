@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion'
 
 const skills = [
-  { id: 'javascript', name: 'JavaScript', icon: `/icons/javascript.svg` },
-  { id: 'react', name: 'React', icon: `/icons/react.svg` },
-  { id: 'express', name: 'Express', icon: `/icons/express.svg` },
-  { id: 'nodejs', name: 'Node.js', icon: `/icons/nodejs.svg` },
-  { id: 'git', name: 'Git', icon: `/icons/git.svg` },
-  { id: 'github', name: 'GitHub', icon: `/icons/github.svg` },
-  { id: 'cpp', name: 'C/C++', icon: `/icons/cpp.svg` },
-  { id: 'java', name: 'Java', icon: `/icons/java.svg` },
-  { id: 'python', name: 'Python', icon: `/icons/python.svg` },
-  { id: 'Linux', name: 'Linux', icon: `/icons/linux.svg` },
+  { id: 'javascript', name: 'JavaScript', icon: `${import.meta.env.BASE_URL}/icons/javascript.svg` },
+  { id: 'react', name: 'React', icon: `${import.meta.env.BASE_URL}/icons/react.svg` },
+  { id: 'express', name: 'Express', icon: `${import.meta.env.BASE_URL}/icons/express.svg` },
+  { id: 'nodejs', name: 'Node.js', icon: `${import.meta.env.BASE_URL}/icons/nodejs.svg` },
+  { id: 'git', name: 'Git', icon: `${import.meta.env.BASE_URL}/icons/git.svg` },
+  { id: 'github', name: 'GitHub', icon: `${import.meta.env.BASE_URL}/icons/github.svg` },
+  { id: 'cpp', name: 'C/C++', icon: `${import.meta.env.BASE_URL}/icons/cpp.svg` },
+  { id: 'java', name: 'Java', icon: `${import.meta.env.BASE_URL}/icons/java.svg` },
+  { id: 'python', name: 'Python', icon: `${import.meta.env.BASE_URL}/icons/python.svg` },
+  { id: 'Linux', name: 'Linux', icon: `${import.meta.env.BASE_URL}/icons/linux.svg` },
 ]
 
 const containerVariants = {
@@ -81,4 +81,4 @@ const Skills = () => {
   )
 }
 
-export default Skills 
+export default Skills

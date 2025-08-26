@@ -4,12 +4,13 @@ import { Globe, Zap, Rocket, Database, Shield, Code } from 'lucide-react'
 const projects = [
   {
     title: 'Registration System',
-    description: 'A comprehensive student registration system with secure authentication, role-based access control, and real-time data validation. Features include user management, course enrollment, and administrative dashboard.',
-    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
-    icon: Globe,
-    github: 'https://github.com/dev-harshhh19/Registration-System',
-    live: 'https://registration-system-demo.netlify.app/',
+    description: 'A React, Node.js, and MongoDB app for seminar registrations with a responsive form, email confirmations, and a secure admin dashboard for managing events and attendees. Includes JWT auth, validation, and scalable design.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'EmailJS'],
+    icon: Code,
+    live: 'https://registration-form-event.vercel.app/',
+    github: 'https://github.com/dev-harshhh19/Registration_Form-Event',
     year: '2025',
+    image: `${import.meta.env.BASE_URL}/thumbnails/registration.webp`,
   },
   {
     title: 'Gamiex',
@@ -19,6 +20,7 @@ const projects = [
     github: 'https://github.com/dev-harshhh19/Gamiex-Ecommerce',
     live: 'https://gamiex-gaming.netlify.app/',
     year: '2025',
+    image: `${import.meta.env.BASE_URL}/thumbnails/gamiex.webp`,
   },
   {
     title: 'ProjectFlow',
@@ -28,6 +30,7 @@ const projects = [
     github: 'https://github.com/dev-harshhh19/ProjectFlow-Manager',
     live: 'https://projectflow-demo.netlify.app/',
     year: '2025',
+    image: `${import.meta.env.BASE_URL}/thumbnails/projectflow.webp`,
   },
   {
     title: 'FuelSim',
@@ -37,6 +40,7 @@ const projects = [
     github: 'https://github.com/dev-harshhh19/FuelSim-Gas-Station-Pump-Simulator/',
     live: 'https://fuelsim.netlify.app/',
     year: '2025',
+    image: `${import.meta.env.BASE_URL}/thumbnails/fuelsim.webp`,
   },
   {
     title: 'Student Report Card System',
@@ -46,6 +50,7 @@ const projects = [
     github: 'https://github.com/dev-harshhh19/Report-card-Dashboard',
     live: 'https://report-card-dashboard.onrender.com/',
     year: '2025',
+    image: `${import.meta.env.BASE_URL}/thumbnails/reportcard.webp`,
   },
 ]
 
@@ -85,6 +90,9 @@ const Projects = () => {
               {/* Background overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-400/5 to-secondary-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
+              <div className="relative">
+                <img src={project.image} alt={project.title} className="rounded-t-2xl w-full h-48 object-cover" />
+              </div>
               {/* Content */}
               <div className="relative z-10 p-6 flex flex-col h-full">
                 {/* Icon and title */}
