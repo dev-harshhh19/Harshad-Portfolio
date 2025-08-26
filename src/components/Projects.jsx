@@ -1,29 +1,48 @@
 import { motion } from 'framer-motion'
-import { Code, Zap, Database } from 'lucide-react'
+import { Globe, Zap, Rocket, Database, Shield, Code } from 'lucide-react'
 
 const projects = [
   {
-    title: 'Real-time Buzzer System',
-    description: 'Developed using React, Node.js, and MongoDB for real-time quiz participation. Enabled multi-user buzz-in functionality with synchronized UI and backend logic, created especially to simplify quiz administration for college tech events.',
-    tech: ['React', 'Node.js', 'MongoDB'],
-    icon: Zap,
-    github: 'https://github.com/dev-harshhh19/Report-card-Dashboard',
-    year: '2024',
+    title: 'Registration System',
+    description: 'A comprehensive student registration system with secure authentication, role-based access control, and real-time data validation. Features include user management, course enrollment, and administrative dashboard.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
+    icon: Globe,
+    github: 'https://github.com/dev-harshhh19/Registration-System',
+    live: 'https://registration-system-demo.netlify.app/',
+    year: '2025',
   },
   {
-    title: 'Fuel Station Simulator',
-    description: 'A fully responsive, web-based gas pump simulator built with vanilla HTML, CSS, and JavaScript. Features animated gradients, glassmorphism UI, and dynamic theming to simulate a realistic fuel dispensing experience. Designed for desktop and mobile, with no backend or frameworks.',
-    tech: ['HTML', 'CSS', 'JavaScript'],
+    title: 'Gamiex',
+    description: 'A modern e-commerce platform for gaming enthusiasts. Features include product catalog, shopping cart, secure checkout, user reviews, and admin panel for inventory management.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
+    icon: Zap,
+    github: 'https://github.com/dev-harshhh19/Gamiex-Ecommerce',
+    live: 'https://gamiex-gaming.netlify.app/',
+    year: '2025',
+  },
+  {
+    title: 'ProjectFlow',
+    description: 'A collaborative project management tool with real-time updates, task tracking, team communication, and progress analytics. Designed for agile development teams.',
+    tech: ['React', 'Node.js', 'Socket.io', 'PostgreSQL', 'Redis'],
+    icon: Rocket,
+    github: 'https://github.com/dev-harshhh19/ProjectFlow-Manager',
+    live: 'https://projectflow-demo.netlify.app/',
+    year: '2025',
+  },
+  {
+    title: 'FuelSim',
+    description: 'An interactive gas station pump simulator with realistic physics, fuel management system, and customer interaction scenarios. Built for training and educational purposes.',
+    tech: ['HTML', 'CSS', 'JavaScript', 'Canvas API', 'LocalStorage'],
     icon: Database,
     github: 'https://github.com/dev-harshhh19/FuelSim-Gas-Station-Pump-Simulator/',
-    live: 'https://dev-harshhh19.github.io/FuelSim-Gas-Station-Pump-Simulator/',
+    live: 'https://fuelsim.netlify.app/',
     year: '2025',
   },
   {
     title: 'Student Report Card System',
-    description: 'An engaging, web-based dashboard showcasing student grades and performance analytics. Built with vanilla HTML, CSS, and JavaScript, it features interactive charts, filterable report views, and responsive design. Ideal for visual learners and educators to explore academic metrics intuitively.',
+    description: 'An engaging, web-based dashboard showcasing student grades and performance analytics. Built with vanilla HTML, CSS, and JavaScript, it features interactive charts, filterable report views, and responsive design.',
     tech: ['HTML', 'CSS', 'JavaScript'],
-    icon: Code,
+    icon: Shield,
     github: 'https://github.com/dev-harshhh19/Report-card-Dashboard',
     live: 'https://report-card-dashboard.onrender.com/',
     year: '2025',
@@ -48,6 +67,7 @@ const Projects = () => {
             Here are some of my main projects, demonstrating my skills in full-stack development and problem-solving.
           </p>
         </motion.div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
             <motion.div
@@ -56,45 +76,72 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -16 }}
-              // transition={{ duration: 0.8 }}
-              className="glass-effect rounded-xl p-6 flex flex-col justify-between card-hover"
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col h-full"
             >
-              <div>
+              {/* Top accent bar */}
+              <div className="h-1 bg-gradient-to-r from-primary-400 to-secondary-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+              
+              {/* Background overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-400/5 to-secondary-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              {/* Content */}
+              <div className="relative z-10 p-6 flex flex-col h-full">
+                {/* Icon and title */}
                 <div className="flex items-center mb-4">
-                  <project.icon size={32} className="text-primary-500 mr-3" />
-                  <h3 className="text-2xl font-bold text-white flex-1">{project.title}</h3>
-                  <span className="text-white/60 text-sm">{project.year}</span>
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-400/20 to-secondary-500/20 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <project.icon size={24} className="text-primary-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-white group-hover:text-primary-400 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <span className="text-white/60 text-sm">{project.year}</span>
+                  </div>
                 </div>
-                <p className="text-white/80 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                
+                {/* Description */}
+                <p className="text-white/80 mb-6 flex-1 leading-relaxed">
+                  {project.description}
+                </p>
+                
+                {/* Tech stack */}
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech) => (
-                    <span key={tech} className="px-3 py-1 bg-white/10 rounded-full text-xs text-white/80">
+                    <span 
+                      key={tech} 
+                      className="px-3 py-1 bg-gradient-to-r from-primary-400/20 to-secondary-500/20 rounded-full text-xs text-white/80 border border-primary-400/30"
+                    >
                       {tech}
                     </span>
                   ))}
                 </div>
-              </div>
-              <div className="flex justify-end">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary-400 hover:text-secondary-400 transition-colors text-sm underline flex items-center"
-                >
-                  View on GitHub
-                </a>
-                {project.live && (
+                
+                {/* Buttons - positioned at bottom */}
+                <div className="mt-auto flex gap-3">
                   <a
-                    href={project.live}
+                    href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="ml-4 text-secondary-400 hover:text-primary-400 transition-colors text-sm underline flex items-center"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 rounded-lg text-white/90 hover:text-white transition-all duration-300 text-sm font-medium"
                   >
-                    Live Demo
+                    <Code size={16} /> GitHub
                   </a>
-                )}
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-400 to-secondary-500 hover:from-primary-500 hover:to-secondary-600 rounded-lg text-white font-medium transition-all duration-300 text-sm"
+                    >
+                      <Globe size={16} /> Live Demo
+                    </a>
+                  )}
+                </div>
               </div>
+              
+              {/* Corner glow effect */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-400/20 to-secondary-500/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </motion.div>
           ))}
         </div>

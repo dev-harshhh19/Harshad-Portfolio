@@ -5,105 +5,169 @@ import { Menu, X } from 'lucide-react'
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('hero')
 
+  // Simple scroll handler
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
-
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Simple section detection
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'about', 'projects', 'skills', 'contact']
+      
+      // ADJUST THIS VALUE: Controls when section becomes "active"
+      // Higher value = section activates earlier, Lower value = section activates later
+      const scrollOffset = 100
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i])
+        if (section && section.offsetTop <= window.scrollY + scrollOffset) {
+          setActiveSection(sections[i])
+          break
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Custom smooth scroll with full control - NO JUMPING
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      // CUSTOMIZE THESE VALUES:
+      const navbarHeight = 100        // Height of your navbar
+      const extraSpacing = -75      // Extra space below navbar (increase/decrease as needed)
+      const scrollDuration = 800     // Scroll duration in milliseconds
+
+      const startPosition = window.pageYOffset
+      const targetPosition = element.offsetTop - navbarHeight - extraSpacing
+      const distance = targetPosition - startPosition
+      
+      let startTime = null
+      
+      const animateScroll = (currentTime) => {
+        if (startTime === null) startTime = currentTime
+        const timeElapsed = currentTime - startTime
+        const progress = Math.min(timeElapsed / scrollDuration, 1)
+        
+        // Smooth easing function
+        const ease = 1 - Math.pow(1 - progress, 3)
+        const currentPosition = startPosition + (distance * ease)
+        
+        window.scrollTo(0, currentPosition)
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll)
+        }
+      }
+      
+      requestAnimationFrame(animateScroll)
+      setIsMobileMenuOpen(false)
     }
-    setIsMobileMenuOpen(false)
   }
 
   const navItems = [
     { name: 'Home', id: 'hero' },
-    { name: 'Certifications', id: 'certifications' },
-    { name: 'Education', id: 'education' },
+    { name: 'About', id: 'about' },
+    { name: 'Projects', id: 'projects' },
     { name: 'Skills', id: 'skills' },
     { name: 'Contact', id: 'contact' }
   ]
 
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'glass-effect shadow-lg' 
-          : 'bg-transparent'
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'top-2' : 'top-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
-          >
-            <div className="w-10 h-10 bg-gradient-to-r from-primary-400 to-secondary-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">H</span>
-            </div>
-            <span className="text-white font-bold text-xl gradient-text">
-              Harshad Nikam
-            </span>
-          </motion.div>
-
+        <div className="flex justify-center">
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.name}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection(item.id)}
-                className="text-white/80 hover:text-white transition-colors duration-200 font-medium"
-              >
-                {item.name}
-              </motion.button>
-            ))}
-          </nav>
+          <div className={`hidden md:flex items-center rounded-2xl px-6 py-3 transition-all duration-300 ${
+            isScrolled 
+              ? 'bg-black/20 backdrop-blur-md border border-white/10 shadow-lg' 
+              : 'bg-transparent'
+          }`}>
+            <nav className="flex space-x-8">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id
+                return (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`relative px-3 py-2 text-sm font-medium transition-all duration-200 ${
+                      isActive 
+                        ? 'text-white' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    {item.name}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 bg-white/10 rounded-lg -z-10"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    )}
+                  </button>
+                )
+              })}
+            </nav>
+          </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            whileTap={{ scale: 0.95 }}
+          <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white p-2"
+            className="md:hidden text-white p-2 rounded-lg bg-black/20 backdrop-blur-md border border-white/10"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+          </button>
         </div>
 
         {/* Mobile Navigation */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.nav
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden glass-effect rounded-lg mt-2 overflow-hidden"
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden mt-4"
             >
-              <div className="py-4 space-y-2">
-                {navItems.map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors duration-200"
-                  >
-                    {item.name}
-                  </button>
-                ))}
+              <div className="bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-4">
+                <nav className="space-y-2">
+                  {navItems.map((item) => {
+                    const isActive = activeSection === item.id
+                    return (
+                      <button
+                        key={item.name}
+                        onClick={() => scrollToSection(item.id)}
+                        className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 ${
+                          isActive 
+                            ? 'bg-white/10 text-white' 
+                            : 'text-white/70 hover:text-white hover:bg-white/5'
+                        }`}
+                      >
+                        {item.name}
+                      </button>
+                    )
+                  })}
+                </nav>
               </div>
-            </motion.nav>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
@@ -111,4 +175,4 @@ const Header = () => {
   )
 }
 
-export default Header 
+export default Header  
