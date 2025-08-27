@@ -43,7 +43,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
             >
-              Hi, I’m <span className="gradient-text">Harshad</span> — I build web apps with MERN & AI integration
+              Hi, I’m <span className="gradient-text">Harshad</span> <br /> I build web apps with MERN & AI integration
             </motion.h1>
 
             {/* Subtext */}
@@ -83,7 +83,7 @@ const Hero = () => {
             </motion.a>
             
             <motion.a
-              href="https://www.linkedin.com/in/harshad-nikam-311734281"
+              href="https://www.linkedin.com/in/harshad-nikam06"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}

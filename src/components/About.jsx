@@ -56,9 +56,6 @@ const About = () => {
               <p className="text-text-secondary leading-relaxed mt-2">
                 I enjoy clean UI, scalable APIs, and delivering reliable features with attention to detail, accessibility, and performance.
               </p>
-              <p className="text-text-secondary leading-relaxed mt-2">
-                Currently learning more about AI/ML workflows and cloud-backed deployment to bring ideas from prototype to production.
-              </p>
             </div>
           </div>
 
@@ -77,7 +74,7 @@ const About = () => {
             <div className="text-text-secondary text-xs mb-2 transform transition-transform duration-200 group-hover:-translate-y-1.5">Experianced and worked with different</div>
             <h3 className="text-xl md:text-2xl font-bold text-text-primary mb-3 transform transition-transform duration-200 group-hover:-translate-y-1.5">Libraries and Framework</h3>
             <div className="flex flex-wrap gap-1.5 transform transition-transform duration-200 group-hover:-translate-y-1.5">
-              {['ReactJS', 'Express', 'NodeJs', 'Git', 'Linux', 'JavaScript'].map((t) => (
+              {['ReactJS', 'Express', 'NodeJs', 'Three.js', 'TailwindCSS', 'Framer Motion'].map((t) => (
                 <span key={t} className="px-2.5 py-1 rounded-xl bg-white/5 border border-white/10 text-text-primary text-[11px]">
                   {t}
                 </span>
@@ -90,7 +87,7 @@ const About = () => {
             <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ background: 'radial-gradient(420px 140px at 100% 20%, #9D4EDD 0%, transparent 60%)' }} />
             <h3 className="text-xl md:text-2xl font-bold text-text-primary mb-3 transform transition-transform duration-200 group-hover:-translate-y-1.5">Currently exploring</h3>
             <ul className="list-disc pl-5 space-y-1 text-text-secondary transform transition-transform duration-200 group-hover:-translate-y-1.5">
-              {['Next.js App Router', 'Animations with Framer Motion', 'Cloud deployments on AWS', 'AI-assisted features'].map((i) => (
+              {['Next.js App Router', 'Animations with Framer Motion', 'Cloud deployments on AWS', 'AI-ML workflows'].map((i) => (
                 <li key={i}>{i}</li>
               ))}
             </ul>
