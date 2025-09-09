@@ -4,7 +4,7 @@ const Profile = () => {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <img
-        src="/profile.jpg"
+        src="https://res.cloudinary.com/dtsque0dg/image/upload/v1757406035/profile-min_rzgdcv.png"
         alt="Profile"
         className="rounded-full w-50 h-50 object-cover"
       />
