@@ -28,7 +28,7 @@ const projects = [
     tech: ['React', 'Node.js', 'Socket.io', 'PostgreSQL', 'Redis'],
     icon: Rocket,
     github: 'https://github.com/dev-harshhh19/ProjectFlow',
-    live: 'https://project-flow-two.vercel.app/',
+    live: 'https://project-flow-dev.vercel.app/',
     year: '2025',
     image: `${import.meta.env.BASE_URL}/thumbnails/projectflow.webp`,
   },
