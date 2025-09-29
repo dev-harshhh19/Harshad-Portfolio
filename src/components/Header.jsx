@@ -7,6 +7,25 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
 
+  // Handle click outside to close menu
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const mobileMenu = document.getElementById('mobile-menu')
+      const menuButton = document.getElementById('menu-button')
+      
+      if (isMobileMenuOpen && 
+          mobileMenu && 
+          menuButton && 
+          !mobileMenu.contains(event.target) && 
+          !menuButton.contains(event.target)) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isMobileMenuOpen])
+
   // Simple scroll handler
   useEffect(() => {
     const handleScroll = () => {
@@ -92,7 +111,16 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-center">
+        <div className="flex justify-center md:justify-center relative">
+          {/* Mobile Menu Button - Positioned Absolutely */}
+          <button
+            id="menu-button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden absolute right-0 top-0 text-white p-2 rounded-lg bg-black/20 backdrop-blur-md border border-white/10"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
           {/* Desktop Navigation */}
           <div className={`hidden md:flex items-center rounded-2xl px-6 py-3 transition-all duration-300 ${
             isScrolled 
@@ -128,13 +156,7 @@ const Header = () => {
             </nav>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white p-2 rounded-lg bg-black/20 backdrop-blur-md border border-white/10"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+
         </div>
 
         {/* Mobile Navigation */}
@@ -147,7 +169,7 @@ const Header = () => {
               transition={{ duration: 0.2 }}
               className="md:hidden mt-4"
             >
-              <div className="bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-4">
+              <div id="mobile-menu" className="bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-4">
                 <nav className="space-y-2">
                   {navItems.map((item) => {
                     const isActive = activeSection === item.id

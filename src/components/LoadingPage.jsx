@@ -1,16 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const LoadingPage = ({ onLoadingComplete }) => {
+const LoadingPage = ({ onLoadingComplete, testMode = false }) => {
   const [loading, setLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
+    // Progress simulation for better UX
+    const progressInterval = setInterval(() => {
+      setLoadingProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + Math.random() * 30;
+      });
+    }, 100);
+
     const timer = setTimeout(() => {
       setLoading(false);
       setTimeout(() => onLoadingComplete && onLoadingComplete(), 200);
-    }, 1200);
-    return () => clearTimeout(timer);
-  }, [onLoadingComplete]);
+    }, testMode ? 100 : 1200); // Faster loading in test mode
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(progressInterval);
+    };
+  }, [onLoadingComplete, testMode]);
 
   return (
     <AnimatePresence>
@@ -20,6 +36,10 @@ const LoadingPage = ({ onLoadingComplete }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-[#0F0F12]"
+          data-testid="loading-page"
+          role="status"
+          aria-live="polite"
+          aria-label="Loading portfolio content"
         >
           <div className="text-center">
             <motion.h1
@@ -27,6 +47,7 @@ const LoadingPage = ({ onLoadingComplete }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="text-3xl sm:text-4xl font-bold text-white"
+              aria-level="1"
             >
               Harshad Nikam
             </motion.h1>
@@ -39,8 +60,18 @@ const LoadingPage = ({ onLoadingComplete }) => {
               Portfolio
             </motion.p>
             <div className="mt-8 flex items-center justify-center">
-              <span className="sr-only">Loading</span>
-              <div className="w-10 h-10 rounded-full border-2 border-white/20 border-t-[#7F5AF0] animate-spin"></div>
+              <span className="sr-only">
+                Loading portfolio content, {Math.round(loadingProgress)}% complete
+              </span>
+              <div 
+                className="w-10 h-10 rounded-full border-2 border-white/20 border-t-[#7F5AF0] animate-spin"
+                aria-hidden="true"
+              ></div>
+            </div>
+            
+            {/* Progress indicator for screen readers */}
+            <div className="sr-only" aria-live="polite">
+              Loading: {Math.round(loadingProgress)}%
             </div>
           </div>
         </motion.div>
