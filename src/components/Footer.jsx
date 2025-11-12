@@ -36,7 +36,7 @@ const Footer = () => {
             <h4 className="text-white font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <a href='https://collection.cloudinary.com/dtsque0dg/99894a8de56f877d1e7304635e638902' target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors duration-200 text-sm">Resume (PDF)</a>
+                <a href={`${import.meta.env.BASE_URL}/Resume/HarshadNikamResume.pdf`} target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors duration-200 text-sm">Resume (PDF)</a>
               </li>
               {['Home', 'Certifications', 'Skills', 'Contact'].map((link) => (
                 <li key={link}>
