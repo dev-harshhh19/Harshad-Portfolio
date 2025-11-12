@@ -165,7 +165,7 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href='https://collection.cloudinary.com/dtsque0dg/99894a8de56f877d1e7304635e638902'
+              href={`${import.meta.env.BASE_URL}/Resume/HarshadNikamResume.pdf`}
               download="HarshadNikamResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
