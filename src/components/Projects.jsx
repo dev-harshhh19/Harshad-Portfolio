@@ -10,7 +10,7 @@ const projects = [
     live: 'https://registration-form-event.vercel.app/',
     github: 'https://github.com/dev-harshhh19/Registration_Form-Event',
     year: '2025',
-    image: `${import.meta.env.BASE_URL}/thumbnails/registration.webp`,
+    image: 'https://res.cloudinary.com/dtsque0dg/image/upload/f_auto,q_auto/v1762924378/registration_oq07sa.png',
   },
   {
     title: 'Gamiex',
@@ -20,7 +20,7 @@ const projects = [
     github: 'https://github.com/dev-harshhh19/Gamiex',
     live: 'https://gamiex.vercel.app/',
     year: '2025',
-    image: `${import.meta.env.BASE_URL}/thumbnails/gamiex.webp`,
+    image: 'https://res.cloudinary.com/dtsque0dg/image/upload/f_auto,q_auto/v1762924273/gamiex_namr7v.jpg',
   },
   {
     title: 'ProjectFlow',
@@ -30,7 +30,7 @@ const projects = [
     github: 'https://github.com/dev-harshhh19/ProjectFlow',
     live: 'https://project-flow-dev.vercel.app/',
     year: '2025',
-    image: `${import.meta.env.BASE_URL}/thumbnails/projectflow.webp`,
+    image: 'https://res.cloudinary.com/dtsque0dg/image/upload/f_auto,q_auto/v1762924275/projectflow_ewitq9.png',
   },
   {
     title: 'FuelSim',
@@ -40,7 +40,7 @@ const projects = [
     github: 'https://github.com/dev-harshhh19/FuelSim-Gas-Station-Pump-Simulator/',
     live: 'https://fuelsim.netlify.app/',
     year: '2025',
-    image: `${import.meta.env.BASE_URL}/thumbnails/fuelsim.webp`,
+    image: 'https://res.cloudinary.com/dtsque0dg/image/upload/f_auto,q_auto/v1762924273/fuelsim_xzbgac.png',
   },
   {
     title: 'Student Report Card System',
@@ -50,7 +50,7 @@ const projects = [
     github: 'https://github.com/dev-harshhh19/Report-card-Dashboard',
     live: 'https://report-card-dashboard.onrender.com/',
     year: '2025',
-    image: `${import.meta.env.BASE_URL}/thumbnails/reportcard.webp`,
+    image: 'https://res.cloudinary.com/dtsque0dg/image/upload/f_auto,q_auto/v1762924275/reportcard_gtefns.png',
   },
 ]
 
