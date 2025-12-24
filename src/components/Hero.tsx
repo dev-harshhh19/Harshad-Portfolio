@@ -75,13 +75,13 @@ const Hero = () => {
 
             {/* Main Heading */}
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-snug"
               aria-label="Hi, I'm Harshad. I build web apps with MERN and AI integration"
             >
-              <span className="sr-only">Hi, I'm Harshad. I build web apps with MERN and AI integration</span>
-              <span aria-hidden="true" className="block overflow-hidden">
+              <span className="sr-only">Hi, I&apos;m Harshad. I build web apps with MERN and AI integration</span>
+              <span aria-hidden="true" className="block">
                 <span className="inline-block animate-slideUp animation-delay-400">
-                  Hi, I'm <span className="gradient-text">Harshad</span>
+                  Hi, I&apos;m <span className="gradient-text">Harshad</span>
                 </span>
                 <br />
                 <span className="inline-block animate-slideUp animation-delay-600">

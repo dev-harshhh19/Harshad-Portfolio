@@ -1,4 +1,5 @@
-import { Globe, Zap, Rocket, Database, Shield, Code, ExternalLink, Github } from 'lucide-react'
+import Image from 'next/image'
+import { Zap, Rocket, Database, Shield, Code, ExternalLink, Github } from 'lucide-react'
 
 const projects = [
   {
@@ -74,11 +75,12 @@ const Projects = () => {
               style={{ animationDelay: `${idx * 100}ms` }}
             >
               {/* Project Image */}
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
-                loading="lazy"
-                decoding="async"
+                fill
+                unoptimized
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
 
