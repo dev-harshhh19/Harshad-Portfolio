@@ -1,17 +1,20 @@
+import React from "react";
+import Image from "next/image";
+
 const skills = [
-  { id: 'javascript', name: 'JavaScript', icon: `/icons/javascript.svg` },
-  { id: 'react', name: 'React', icon: `/icons/react.svg` },
-  { id: 'typescript', name: 'TypeScript', icon: `/icons/TypeScript.svg` },
-  { id: 'nextjs', name: 'Next.js', icon: `/icons/nextjs.svg` },
-  { id: 'nodejs', name: 'Node.js', icon: `/icons/node.svg` },
-  { id: 'express', name: 'Express', icon: `/icons/express.svg` },
-  { id: 'nest', name: 'Nest.js', icon: `/icons/nest-js.svg` },
-  { id: 'cpp', name: 'C/C++', icon: `/icons/cpp.svg` },
-  { id: 'git', name: 'Git', icon: `/icons/git.svg` },
-  { id: 'github', name: 'GitHub', icon: `/icons/github.svg` },
-  { id: 'mongodb', name: 'MongoDB', icon: `/icons/MongoDB.svg` },
-  { id: 'Linux', name: 'Linux', icon: `/icons/linux.svg` },
-]
+  { id: "javascript", name: "JavaScript", icon: `/icons/javascript.svg` },
+  { id: "react", name: "React", icon: `/icons/react.svg` },
+  { id: "typescript", name: "TypeScript", icon: `/icons/TypeScript.svg` },
+  { id: "nextjs", name: "Next.js", icon: `/icons/nextjs.svg` },
+  { id: "nodejs", name: "Node.js", icon: `/icons/node.svg` },
+  { id: "express", name: "Express", icon: `/icons/express.svg` },
+  { id: "nest", name: "Nest.js", icon: `/icons/nest-js.svg` },
+  { id: "cpp", name: "C/C++", icon: `/icons/cpp.svg` },
+  { id: "git", name: "Git", icon: `/icons/git.svg` },
+  { id: "github", name: "GitHub", icon: `/icons/github.svg` },
+  { id: "mongodb", name: "MongoDB", icon: `/icons/MongoDB.svg` },
+  { id: "Linux", name: "Linux", icon: `/icons/linux.svg` },
+];
 
 const Skills = () => {
   return (
@@ -35,12 +38,16 @@ const Skills = () => {
                   {skill.name}
                 </div>
                 <div className="w-20 h-15 flex items-center justify-center">
-                  <img
+                  <Image
                     src={skill.icon}
                     alt={skill.name}
+                    width={40}
+                    height={40}
                     loading="lazy"
-                    className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-105 filter saturate-0 brightness-200 group-hover:filter-none"
-                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                    className="object-contain transition-transform duration-300 group-hover:scale-105 filter saturate-0 brightness-200 group-hover:filter-none"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
                   />
                   <span className="sr-only">{skill.name}</span>
                 </div>
@@ -50,7 +57,7 @@ const Skills = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Skills
+export default Skills;
