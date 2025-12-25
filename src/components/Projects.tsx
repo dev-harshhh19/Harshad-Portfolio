@@ -1,12 +1,12 @@
 import Image from 'next/image'
-import { Zap, Rocket, Database, Shield, Code, ExternalLink, Github, CloudSun } from 'lucide-react'
+import { IdCard, ExternalLink, Github, CloudSun, Newspaper, Gamepad2, Notebook, Fuel } from 'lucide-react'
 
 const projects = [
   {
     title: 'Registration System',
     description: 'A React, Node.js, and MongoDB app for seminar registrations with a responsive form, email confirmations, and a secure admin dashboard for managing events and attendees.',
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
-    icon: Code,
+    icon: Newspaper,
     live: 'https://registration-form-event.vercel.app/',
     github: 'https://github.com/dev-harshhh19/Registration_Form-Event',
     year: '2025',
@@ -16,7 +16,7 @@ const projects = [
     title: 'Gamiex',
     description: 'A modern e-commerce platform for gaming enthusiasts. Features include product catalog, shopping cart, secure checkout, and admin panel.',
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
-    icon: Zap,
+    icon: Gamepad2,
     github: 'https://github.com/dev-harshhh19/Gamiex',
     live: 'https://gamiex.vercel.app/',
     year: '2025',
@@ -26,7 +26,7 @@ const projects = [
     title: 'ProjectFlow',
     description: 'A collaborative project management tool with real-time updates, task tracking, team communication, and progress analytics.',
     tech: ['React', 'Node.js', 'Socket.io', 'PostgreSQL'],
-    icon: Rocket,
+    icon: Notebook,
     github: 'https://github.com/dev-harshhh19/ProjectFlow',
     live: 'https://project-flow-dev.vercel.app/',
     year: '2025',
@@ -36,7 +36,7 @@ const projects = [
     title: 'FuelSim',
     description: 'An interactive gas station pump simulator with realistic physics, fuel management system, and customer interaction scenarios.',
     tech: ['HTML', 'CSS', 'JavaScript', 'Canvas API'],
-    icon: Database,
+    icon: Fuel,
     github: 'https://github.com/dev-harshhh19/FuelSim-Gas-Station-Pump-Simulator/',
     live: 'https://fuelsim.netlify.app/',
     year: '2025',
@@ -46,7 +46,7 @@ const projects = [
     title: 'Student Report Card',
     description: 'A web-based dashboard showcasing student grades and performance analytics with interactive charts and filterable report views.',
     tech: ['HTML', 'CSS', 'JavaScript'],
-    icon: Shield,
+    icon: IdCard,
     github: 'https://github.com/dev-harshhh19/Report-card-Dashboard',
     live: 'https://report-card-dashboard.onrender.com/',
     year: '2025',
