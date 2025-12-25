@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Zap, Rocket, Database, Shield, Code, ExternalLink, Github } from 'lucide-react'
+import { Zap, Rocket, Database, Shield, Code, ExternalLink, Github, CloudSun } from 'lucide-react'
 
 const projects = [
   {
@@ -52,6 +52,17 @@ const projects = [
     year: '2025',
     image: 'https://res.cloudinary.com/dtsque0dg/image/upload/f_auto,q_auto,w_400/v1762924275/reportcard_gtefns.png',
   },
+  {
+  title: 'Weather App',
+  description: 'A beautiful and responsive weather application that provides real-time weather information and a 5-day forecast for any city worldwide, featuring dynamic backgrounds, theme toggling, and smooth animations.',
+  tech: ['HTML', 'CSS', 'JavaScript', 'OpenWeatherMap API'],
+  icon: CloudSun,
+  github: 'https://github.com/dev-harshhh19/100Days-JavaScript-challenge/tree/main/Day_75/WeatherApp',
+  live: 'https://100weatherapp.netlify.app/',
+  year: '2025',
+  image: 'https://res.cloudinary.com/dtsque0dg/image/upload/v1766657056/Screenshot_2025-12-25_153334_dyubaw.png' // optional preview image
+}
+
 ]
 
 const Projects = () => {
