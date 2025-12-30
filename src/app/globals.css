@@ -208,22 +208,17 @@
   }
 }
 
-/* Custom scrollbar for a more modern look */
+/* Hide scrollbar while maintaining scroll functionality */
+html {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0E0E10;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2a2a2e;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #3a3a3e;
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 /* Selection highlight color */
@@ -240,9 +235,37 @@
   will-change: transform, opacity;
 }
 
+/* Mouse Spotlight Effect */
+.mouse-spotlight {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  will-change: transform, opacity;
+
+  /* Radial gradient spotlight */
+  background: radial-gradient(circle at center,
+      rgba(127, 90, 240, 0.35) 0%,
+      rgba(127, 90, 240, 0.18) 30%,
+      rgba(127, 90, 240, 0.08) 50%,
+      transparent 70%);
+
+  /* Blur for soft glow effect */
+  filter: blur(40px);
+}
+
 /* Mobile optimizations */
 @media (max-width: 768px) {
   .animate-blob {
     animation-duration: 12s;
+  }
+
+  /* Reduce spotlight size on smaller screens */
+  .mouse-spotlight {
+    width: 400px;
+    height: 400px;
   }
 }

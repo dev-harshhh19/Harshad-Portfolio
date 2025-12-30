@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import Header from '@/components/Header';
@@ -20,7 +20,6 @@ const Skills = dynamic(() => import('@/components/Skills'), {
 const Contact = dynamic(() => import('@/components/Contact'), {
   loading: () => <div className="min-h-[400px]" />
 });
-const Spotlight = dynamic(() => import('@/components/Spotlight'), { ssr: false });
 
 // Only load in development
 const PerformanceMonitor = dynamic(() => import('@/components/PerformanceMonitor'), {
@@ -29,17 +28,11 @@ const PerformanceMonitor = dynamic(() => import('@/components/PerformanceMonitor
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [showSpotlight, setShowSpotlight] = useState(false);
 
   useEffect(() => {
     // Faster initial load - skip artificial loading delay
     const timer = setTimeout(() => {
       setIsLoading(false);
-      // Show spotlight effect
-      setTimeout(() => {
-        setShowSpotlight(true);
-        setTimeout(() => setShowSpotlight(false), 1200);
-      }, 200);
     }, 300);
 
     return () => clearTimeout(timer);
@@ -100,21 +93,6 @@ export default function Home() {
   return (
     <ErrorBoundary>
       <div className="min-h-screen relative" style={{ backgroundColor: '#0E0E10' }}>
-        {/* Spotlight Effect */}
-        <AnimatePresence>
-          {showSpotlight && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
-              className="fixed inset-0 pointer-events-none z-10"
-            >
-              <Spotlight className="top-20 left-10 md:left-32" fill="#7F5AF0" />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

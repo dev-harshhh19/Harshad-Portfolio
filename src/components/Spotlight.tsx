@@ -8,7 +8,7 @@ interface SpotlightProps {
 const Spotlight: React.FC<SpotlightProps> = ({ className, fill }) => {
   return (
     <svg
-      className={`pointer-events-none absolute z-[1] h-[50%] w-[50%] ${className || ''}`}
+      className={`animate-spotlight pointer-events-none absolute z-[1] h-[169%] w-[138%] lg:w-[84%] opacity-0 ${className || ''}`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 3787 2842"
       fill="none"
@@ -20,8 +20,8 @@ const Spotlight: React.FC<SpotlightProps> = ({ className, fill }) => {
           rx="1924.71"
           ry="273.501"
           transform="matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)"
-          fill="url(#spotlightGradient)"
-          fillOpacity="1"
+          fill={fill || 'white'}
+          fillOpacity="0.21"
         ></ellipse>
       </g>
       <defs>
@@ -46,11 +46,6 @@ const Spotlight: React.FC<SpotlightProps> = ({ className, fill }) => {
             result="effect1_foregroundBlur_1065_8"
           ></feGaussianBlur>
         </filter>
-        <radialGradient id="spotlightGradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1900 250) rotate(90) scale(300 1600)">
-          <stop offset="0%" stopColor={fill || '#7F5AF0'} stopOpacity="0.45" />
-          <stop offset="60%" stopColor={fill || '#7F5AF0'} stopOpacity="0.18" />
-          <stop offset="100%" stopColor={fill || '#7F5AF0'} stopOpacity="0" />
-        </radialGradient>
       </defs>
     </svg>
   );

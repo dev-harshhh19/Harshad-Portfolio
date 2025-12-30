@@ -1,5 +1,6 @@
 import { ChevronDown, Download, ExternalLink, Mail, Phone, GraduationCap, Linkedin } from 'lucide-react'
 import Profile from './Profile'
+import Spotlight from './Spotlight'
 
 const Hero = () => {
   const scrollToCertifications = () => {
@@ -24,6 +25,27 @@ const Hero = () => {
     >
       {/* Background Elements - Using CSS animations */}
       <div className="absolute inset-0" style={{ backgroundColor: '#0E0E10' }}>
+        {/* 
+          Spotlight Effect - Three Layers
+          Positioned here (before grids) to create depth effect
+          Move this section to page.tsx if you want spotlight across entire page
+          or keep it here for Hero-section-only spotlight effect
+        */}
+        <div>
+          <Spotlight
+            className="-top-[30%] -left-[43%] h-[65vh] w-[40vw]"
+            fill="#EDEDED"
+          />
+          <Spotlight
+            className="-top-[38%] -right-[35%] h-[75vh] w-[40vw]"
+            fill="#9D4EDD"
+          />
+          <Spotlight
+            className="-top-[33%] -left-[29%] h-[90vh] w-[50vw]"
+            fill="#7F5AF0"
+          />
+        </div>
+
         {/* Grid Background with top fade */}
         <div className="absolute inset-0">
           <div
@@ -41,7 +63,7 @@ const Hero = () => {
         </div>
 
         <div
-          className="absolute top-20 left-20 w-72 h-72 rounded-full blur-3xl animate-blob"
+          className="absolute top-20 left-20 w-72 h-72 rounded-full blur-3xl animate-blob animation-delay-2000"
           style={{ background: '#9D4EDD22' }}
           aria-hidden="true"
         />
