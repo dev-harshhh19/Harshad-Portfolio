@@ -33,15 +33,15 @@ const Hero = () => {
         */}
         <div>
           <Spotlight
-            className="-top-[30%] -left-[43%] h-[65vh] w-[40vw]"
+            className="-top-[30%] -left-[43%] min-h-[600px] min-w-[500px] h-[65vh] w-[40vw]"
             fill="#EDEDED"
           />
           <Spotlight
-            className="-top-[38%] -right-[35%] h-[75vh] w-[40vw]"
+            className="-top-[38%] -right-[35%] min-h-[700px] min-w-[500px] h-[75vh] w-[40vw]"
             fill="#9D4EDD"
           />
           <Spotlight
-            className="-top-[33%] -left-[29%] h-[90vh] w-[50vw]"
+            className="-top-[33%] -left-[29%] min-h-[800px] min-w-[600px] h-[90vh] w-[50vw]"
             fill="#7F5AF0"
           />
         </div>
