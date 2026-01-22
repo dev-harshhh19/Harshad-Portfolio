@@ -1,5 +1,7 @@
+'use client'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { IdCard, ExternalLink, Github, CloudSun, Newspaper, Gamepad2, Notebook, Fuel } from 'lucide-react'
+import { IdCard, ExternalLink, Github, MessageCircleCode, Newspaper, Gamepad2, Notebook, Fuel } from 'lucide-react'
 
 const projects = [
   {
@@ -53,19 +55,28 @@ const projects = [
     image: 'https://res.cloudinary.com/dtsque0dg/image/upload/f_auto,q_auto,w_400/v1762924275/reportcard_gtefns.png',
   },
   {
-  title: 'Weather App',
-  description: 'A beautiful and responsive weather application that provides real-time weather information and a 5-day forecast for any city worldwide, featuring dynamic backgrounds, theme toggling, and smooth animations.',
-  tech: ['HTML', 'CSS', 'JavaScript', 'OpenWeatherMap API'],
-  icon: CloudSun,
-  github: 'https://github.com/dev-harshhh19/100Days-JavaScript-challenge/tree/main/Day_75/WeatherApp',
-  live: 'https://100weatherapp.netlify.app/',
-  year: '2025',
-  image: 'https://res.cloudinary.com/dtsque0dg/image/upload/v1766657056/Screenshot_2025-12-25_153334_dyubaw.png' // optional preview image
-}
+    title: 'Code X',
+    description: 'A simple web tool to encode and decode text using custom ciphers. Fast, browser-based, and privacy-friendly.',
+    tech: ['TypeScript', 'Tailwind CSS', 'Next.js'],
+    icon: MessageCircleCode,
+    github: 'https://github.com/dev-harshhh19/Code-X',
+    live: 'https://code-x-orian.vercel.app/',
+    year: '2026',
+    image: 'https://res.cloudinary.com/dtsque0dg/image/upload/v1766657056/Screenshot_2025-12-25_153334_dyubaw.png'
+  }
 
 ]
 
 const Projects = () => {
+  const [dots, setDots] = useState('.')
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots(prev => prev.length >= 3 ? '.' : prev + '.')
+    }, 500)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -165,7 +176,9 @@ const Projects = () => {
 
         {/* More projects indicator */}
         <div className="text-center mt-12 animate-on-scroll">
-          <p className="text-white/50 font-mono text-sm">More in Progress...</p>
+          <p className="text-white/50 font-mono text-sm">
+            More in Progress<span className="inline-block w-6 text-left">{dots}</span>
+          </p>
         </div>
       </div>
     </section>
