@@ -42,7 +42,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       </head>
       <body
-        className={`${jakarta.variable} antialiased font-sans`} // Applied new font variable
+        className={`${jakarta.variable} antialiased font-[family-name:var(--font-jakarta)]`}
       >
         {children}
       </body>
