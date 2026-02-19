@@ -69,6 +69,19 @@ const projects = [
 
 const Projects = () => {
   const [dots, setDots] = useState('.')
+  const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set())
+
+  const toggleFlip = (title: string) => {
+    setFlippedCards(prev => {
+      const next = new Set(prev)
+      if (next.has(title)) {
+        next.delete(title)
+      } else {
+        next.add(title)
+      }
+      return next
+    })
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -85,7 +98,7 @@ const Projects = () => {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto">
-            Hover over projects to explore details
+            Click on a project to explore details
           </p>
         </div>
 
@@ -93,81 +106,91 @@ const Projects = () => {
           {projects.map((project, idx) => (
             <div
               key={project.title}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer border border-white/10 hover:border-[#7F5AF0]/50 transition-all duration-300 animate-on-scroll"
+              className="relative aspect-[4/3] rounded-2xl cursor-pointer perspective-800 animate-on-scroll"
               style={{ animationDelay: `${idx * 100}ms` }}
+              onClick={() => toggleFlip(project.title)}
             >
-              {/* Project Image */}
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                unoptimized
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-
-              {/* Default overlay with title */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-xl font-bold text-white">{project.title}</h3>
-                  <span className="text-white/60 text-sm">{project.year}</span>
-                </div>
-              </div>
-
-              {/* Hover overlay with full info */}
-              <div className="absolute inset-0 bg-[#0E0E10]/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-between p-6">
-                {/* Header */}
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-400/20 to-secondary-500/20 flex items-center justify-center">
-                      <project.icon size={20} className="text-primary-400" />
-                    </div>
+              <div className={`relative w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.3,0.8,0.2,1.3)] transform-style-3d ${flippedCards.has(project.title) ? 'rotate-y-180' : ''}`}>
+                {/* Front Face */}
+                <div className="absolute inset-0 w-full h-full backface-hidden rounded-2xl overflow-hidden border border-white/10 bg-background/50 backdrop-blur-[4px]">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    unoptimized
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent flex flex-col justify-end p-6">
                     <div>
-                      <h3 className="text-lg font-bold text-white">{project.title}</h3>
-                      <span className="text-white/50 text-xs">{project.year}</span>
+                      <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
+                      <span className="text-white/80 text-sm font-medium">{project.year}</span>
                     </div>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-white/70 text-sm leading-relaxed mb-4">
-                    {project.description}
-                  </p>
-
-                  {/* Tech stack */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-0.5 bg-white/10 rounded-full text-xs text-white/70"
-                      >
-                        {tech}
-                      </span>
-                    ))}
                   </div>
                 </div>
 
-                {/* Action buttons */}
-                <div className="flex gap-3 mt-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-transparent border border-white/30 rounded-full text-white/90 hover:bg-white/10 hover:border-white/50 hover:text-white transition-all duration-300 text-sm font-medium"
-                  >
-                    <Github size={16} />
-                    Code
-                  </a>
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-transparent border border-white/30 rounded-full text-white hover:bg-white/10 hover:border-white/50 font-medium transition-all duration-300 text-sm"
-                    >
-                      <ExternalLink size={16} />
-                      Live
-                    </a>
-                  )}
+                {/* Back Face */}
+                <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl overflow-hidden border border-white/10">
+                  {/* Background Image for Glass Effect on Back */}
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    unoptimized
+                    className="w-full h-full object-cover opacity-30 blur-[2px]"
+                  />
+                  {/* Glass Overlay */}
+                  <div className="absolute inset-0 bg-[#0E0E10]/80 backdrop-blur-[4px] p-6 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-400/20 to-secondary-500/20 flex items-center justify-center backdrop-blur-md">
+                          <project.icon size={20} className="text-primary-400" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-bold text-white leading-none mb-1">{project.title}</h3>
+                          <span className="text-white/50 text-xs">{project.year}</span>
+                        </div>
+                      </div>
+
+                      <p className="text-white/80 text-sm leading-relaxed mb-4 line-clamp-4 font-medium">
+                        {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2.5 py-1 bg-white/10 border border-white/5 rounded-full text-xs text-white/90 backdrop-blur-sm"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3 mt-4">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-white/10 border border-white/10 rounded-full text-white hover:bg-white/20 hover:border-white/30 transition-all duration-300 text-sm font-semibold backdrop-blur-sm"
+                      >
+                        <Github size={16} />
+                        Code
+                      </a>
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary-500/20 border border-primary-500/30 rounded-full text-primary-300 hover:bg-primary-500/30 hover:border-primary-500/50 transition-all duration-300 text-sm font-semibold backdrop-blur-sm"
+                        >
+                          <ExternalLink size={16} />
+                          Live
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
